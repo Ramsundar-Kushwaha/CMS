@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/create-update-post.css')}}">
+{% endblock style %}
+
+{% block main %}
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true)%}
+            {% if messages %}
+                <div class="flash-container">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{category}}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form action="{{url_for('post.create_post')}}" method="POST">
+            <label for="title"><span>*</span>Title</label>
+            <input type="text" name="title" required>
+
+            <label for="content"><span>*</span>Content</label>
+            <textarea name="content" id="content" rows="5" cols="50" placeholder="Enter..." required></textarea>
+
+            <label for="img">Image Source</label>
+            <input type="url" name="img">
+
+            <div class="btn_box">
+                <button type="reset">clear</button>
+                <button type="submit">update</button>
+            </div>
+        </form>
+    </main>
+{% endblock main %}
+
+{% block footer %}
+    
+{% endblock footer %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login-signup.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/flash.css')}}">
+{% endblock style %}
+
+{% block header %}  
+{% endblock header %}
+
+{% block main %}
+<main>
+    {% with messages = get_flashed_messages(with_categories=true)%}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message {{category}}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="form_container">
+        <h1 class="bg-indigo-600"><a href="#" title="goto home page">Content Management System</a></h1>
+        <form action="{{url_for('auth.login')}}" method="POST">
+            <input type="text" name="username" placeholder="username" required>
+            <input type="password" name="pass" placeholder="********" required>
+    
+            <div class="btn_bx">
+                <button type="reset">clear</button>
+                <button type="submit">login</button>
+            </div>
+
+            <p>Don't have Account? <a href="{{url_for('auth.signup')}}">create account</a></p>
+        </form>
+    </div>
+</main>
+    
+{% endblock main %}
+
+{% block footer %}  
+{% endblock footer %}

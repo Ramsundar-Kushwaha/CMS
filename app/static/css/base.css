@@ -1,0 +1,13 @@
+nav{
+    width: 100%;
+    padding: 1em 0;
+}
+ul{
+    width: 100%;
+    display: flex;
+}
+li{
+    margin: auto;
+    cursor: pointer;
+    color: white;
+}

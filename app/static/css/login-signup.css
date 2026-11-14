@@ -1,0 +1,76 @@
+body{
+    height: 100vh;
+    background-color: whitesmoke;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form_container{
+    width: min(400px, 90vw);
+    z-index: -1;
+
+    box-shadow: 1px 1px 3px gray;
+    transition:all .2s ease-in-out 0s;
+}
+.form_container:hover{
+    box-shadow: 2px 2px 5px gray;
+    transform: scale(1.01);
+}
+h1{
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: .5em 0;
+
+    font-weight: 500;
+    font-size: 1.7em;
+}
+form{
+    width: min(400px, 90vw);
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1em 0 .5em .5em;
+    z-index: 10;
+}
+input{
+    width: 95%;
+    background-color: whitesmoke;
+    margin-bottom: .5em;
+    padding: .5em 0 .5em .5em;
+
+    &:focus{
+        outline: none;
+    }
+}
+.personal-detail{
+    width: 95%;
+    display: flex;
+}
+.gender-detail{
+    display: flex;
+}
+.btn_bx{
+    width: 60%;
+    margin-top: 2em;
+    display: flex;
+}
+button{
+    width: 40%;
+    margin: auto;
+    padding: .5em 1em;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+form > p{
+    margin-top: 1em;
+}
+p > a{
+    color: blue;
+    text-decoration: underline;
+}

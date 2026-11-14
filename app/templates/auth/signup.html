@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/login-signup.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/flash.css')}}">
+{% endblock style %}
+
+{% block header %}  
+{% endblock header %}
+
+{% block main %}
+<main>
+    {% with messages = get_flashed_messages(with_categories=true)%}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message {{category}}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="form_container">
+        <h1 class="bg-indigo-600"><a href="#" title="goto home page">Create an Account</a></h1>
+        <form action="{{url_for('auth.signup')}}" method="POST">
+            <div class="personal-detail">
+                <section class="DOB">
+                    <label for="DOB">Date of Birth:</label>
+                    <input type="date" name="DOB" required>
+                </section>
+                <section class="gender-detail">
+                    <label for="gender">male</label>
+                    <input type="radio" name="gender" value="male" required>
+
+                    <label for="gender">female</label>
+                    <input type="radio" name="gender" value="female" required>
+                </section>
+            </div>
+
+            <input type="text" name="first-name" placeholder="first name" required>
+            <input type="text" name="middle-name" placeholder="middle name">
+            <input type="text" name="last-name" placeholder="last name" required>
+            <input type="text" name="username" placeholder="unique username" required>
+
+            <input type="tel" name="phone-number" placeholder="+918279753801" required>
+            <input type="email" name="email" placeholder="example@gmail.com" required>
+            <input type="password" name="pass" placeholder="new password" required>
+            <input type="password" name="confirm-pass" placeholder="confirm password" required>
+    
+            <div class="btn_bx">
+                <button type="reset">clear</button>
+                <button type="submit">signup</button>
+            </div>
+
+            <p>Already have Account? <a href="{{url_for('auth.login')}}">login</a></p>
+        </form>
+    </div>
+</main>
+    
+{% endblock main %}
+
+{% block footer %}  
+{% endblock footer %}

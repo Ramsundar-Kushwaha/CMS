@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/user-space.css')}}">
+{% endblock style %}
+
+{% block main %}
+    <main>
+        <!--post 1-->
+        {% for post in posts %}
+            
+            <div class="post">
+                <div class="post-title-container">
+                    <section class="post-user font-bold">
+                        {{post.username}}
+                    </section>
+                    <section class="post-title font-bold">
+                        {{post.post_title}}
+                    </section>
+                </div>
+
+                <div class="post-text-content">
+                    <p>
+                    {{post.post_content}}
+                    </p>
+                </div>
+                
+                <figure>
+                    <img src="{{post.post_image }}" alt="{{ post.post_title }}">
+                </figure>
+                <div class="post-btn-bx">
+                    <div onclick="increment(this)" class="like font-bold">like <span></span></div>
+                    <div onclick="increment(this)" class="dislike font-bold">dislike <span></span></div>
+                </div>
+            </div>
+            
+        {% else %}
+        <p>No posts available.</p>
+        {% endfor %}
+
+
+    </main>
+{% endblock main %}
+
+{% block footer %}
+
+{% endblock footer %}
+
+{% block script %}
+    <script>
+
+        function increment(element){
+            let span = element.querySelector("span");
+
+            let count = Number(span.textContent);
+
+            count++;
+
+            span.textContent = count;
+        }
+    </script>
+{% endblock script %}
