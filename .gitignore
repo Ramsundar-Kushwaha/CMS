@@ -16,3 +16,6 @@ instance/
 
 .vscode/
 .idea/
+
+# Test file
+/test.py
