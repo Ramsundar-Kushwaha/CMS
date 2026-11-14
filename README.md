@@ -432,7 +432,7 @@ I will continue improving this project and adding more features as I learn new t
 
 **Project Type:** Full-Stack Web Development
 
-**Screenshots**
+## Screenshots
 ![alt text]({4D466DCE-03F8-4366-9DAE-8302AA9EDF95}.png)
 
 ![alt text]({1C8BB436-CEA6-4CF5-A19E-2008800D1618}.png)
