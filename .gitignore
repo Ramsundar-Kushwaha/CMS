@@ -18,4 +18,4 @@ instance/
 .idea/
 
 # Test file
-/test.py
+test.py
