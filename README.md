@@ -178,7 +178,6 @@ CMS/
 │
 ├── instance/
 │
-├── config.py
 ├── run.py
 ├── .env
 ├── .gitignore
