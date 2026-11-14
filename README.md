@@ -431,3 +431,14 @@ I will continue improving this project and adding more features as I learn new t
 **Technologies:** Python | Flask | SQLite | HTML | CSS | JavaScript
 
 **Project Type:** Full-Stack Web Development
+
+**Screenshots**
+![alt text]({4D466DCE-03F8-4366-9DAE-8302AA9EDF95}.png)
+
+![alt text]({1C8BB436-CEA6-4CF5-A19E-2008800D1618}.png)
+
+![alt text]({1A9EC408-EF55-4A81-8144-0EE815E47FE1}.png)
+
+![alt text]({9124C721-681F-438C-AF96-F33B28CA6C7F}.png)
+
+![alt text]({849494D5-D71B-4431-8352-3580F9B08D79}.png)
