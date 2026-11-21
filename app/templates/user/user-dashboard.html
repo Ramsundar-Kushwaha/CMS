@@ -6,60 +6,45 @@
 
 {% block main %}
     <main>
-        <!--manage post-->
-        <div class="post">
-            <h1 class="text-2xl font-bold">Manage Post</h1>
-            <div class="action-container">
+        <div class="profile_detail">
+            <h1>Welcome! <span>Mr/Ms {{user_info.first_name ~ " " ~ user_info.middle_name ~ " " ~ user_info.last_name}}</span></h1>
+            <p><span>Username:</span> {{user_info.username}}</p>
+            <p><span>Email:</span> {{user_info.email}}</p>
+            <p><span>DOB:</span> {{user_info.data_of_birth}}</p>
+            <p><span>Gender:</span> {{user_info.gender}}</p>
+            <p><span>Phone:</span> {{user_info.phone_number}}</p>
 
-                <a href="{{url_for('post.create_post')}}">
-                    <div class="action-card">Create Post</div>
-                </a>
-
-                <a href="{{url_for('post.delete_post')}}">
-                    <div class="action-card">Delete Post</div>
-                </a>
-
-                <a href="{{url_for('post.update_post')}}">
-                    <div class="action-card">Update Post</div>
-                </a>
-
-                <a href="{{url_for('post.view_post')}}">
-                    <div class="action-card">View Post</div>
-                </a>
-
-            </div>
+            <div class="edit_button"></div>
         </div>
 
-        <!--manage connection-->
-        <div class="connection">
-            <h1 class="text-2xl font-bold">Manage Connections</h1>
-            <div class="action-container">
-                <div class="action-card">Add Connection</div>
-                <div class="action-card">Remove Connection</div>
-                <div class="action-card">View Connection</div>
-                <div class="action-card">Message</div>
-            </div>
+        <div class="posts">
+            {% if posts %} 
+                {% for post in posts %}    
+                    <div class="post">
+                        <section class="title">{{post.post_title}}</section>
+                        <section class="desc">{{post.post_content}}</section>
+                        <figure><img src="{{post.post_image}}" alt="{{post.post_title}}"></figure>
+                        <div class="empression">
+                            <section class="like">👍</section>
+                            <section class="dislike">👎</section>
+                        </div>
+                        <div class="action">
+                            <form action="{{url_for('post.remove_post', post_id = post.post_id)}}" method="POST">
+                                <button type="submit" class="del">delete</button>
+                            </form>
+                            <form action="{{url_for('post.update_post')}}" method="POST">
+                                <button type="submit" class="update">update</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>You haven't created any post yet!</p>
+            {% endif %}
         </div>
-        
-        <div class="privacy">
-            <h1 class="text-2xl font-bold">Privacy & Security</h1>
-            <div class="action-container">
-                <div class="action-card">Control Connections</div>
-                <div class="action-card">Lock Profile</div>
-                <div class="action-card">Control Contacts</div>
-                <div class="action-card">Control chat</div>
-            </div>
-        </div>
-        
-        <div class="account">
-            <h1 class="text-2xl font-bold">Manage Account</h1>
-            <div class="action-container">
-                <div class="action-card">Edit Profile</div>
-                <div class="action-card">Update Contact</div>
-                <div class="action-card">Update Address</div>
-                <div class="delete" onclick="del(this)">Delete Account</div>
-            </div>
-        </div>
+
+        <a href="{{url_for('post.create_post')}}"><div class="create-post">+</div></a>
+
     </main>
 {% endblock main %}
 

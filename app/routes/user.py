@@ -22,8 +22,48 @@ def login_required(view):
 @user.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('user/user-dashboard.html')
 
+    user_info_query = """
+    SELECT
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.email,
+    u.date_of_birth,
+    u.gender,
+    ui.phone_number,
+    ui.username
+    FROM users AS u
+    LEFT JOIN user_info AS ui ON u.user_id = ui.user_id
+    WHERE u.user_id = ?"""
+
+    post_query = """
+    SELECT
+    post_id,
+    post_title,
+    post_content,
+    post_image FROM posts
+    WHERE user_id = ?"""
+
+    db = get_db()
+
+    try:
+
+        user_info = db.execute(user_info_query, (session['user_id'],)).fetchone()
+        posts = db.execute(post_query, (session['user_id'],)).fetchall()
+
+
+        db.close()
+
+        print(user_info)
+        return render_template('user/user-dashboard.html', user_info=user_info, posts=posts)
+    
+    except sqlite3.Error:
+        print("error happend!")
+        return render_template('errors/404.html')
+
+    finally:
+        db.close()
 
 
 
@@ -51,15 +91,9 @@ def user_space():
             """
         ).fetchall()
    
-        # posts = db.execute(
-        #     """
-        #     SELECT * FROM posts
-        #     ORDER BY created_at DESC
-        #     """
-        # ).fetchall()
    
-        print("Number of posts:", len(posts))
-        print("Post records:", [dict(p) for p in posts])
+        # print("Number of posts:", len(posts))
+        # print("Post records:", [dict(p) for p in posts])
    
         flash('Welecome User', 'success')
         return render_template('user/user-space.html', posts = posts)

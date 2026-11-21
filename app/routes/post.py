@@ -56,13 +56,36 @@ def create_post():
             return redirect(url_for('post.create_post'))
     
     return render_template('user/create-post.html')
+    
 
-@post.route('/delete-post')
-def delete_post():
+@post.route('/delete-post/<int:post_id>', methods=['POST'])
+def remove_post(post_id):
     if 'username' not in session:
         return redirect(url_for('auth.login'))
-    
-    return "delete post"
+
+
+    if request.method == 'POST':
+        query = """
+        DELETE FROM posts
+        WHERE post_id = ? AND user_id = ?"""
+
+        post_id = post_id
+
+        try:
+            db = get_db()
+
+            db.execute(query, (post_id, session['user_id']))
+
+            db.commit()
+
+            db.close()
+
+            return redirect(url_for('user.dashboard'))
+        
+        except sqlite3.Error as e:
+            print('Database error while delete in post method!', e)
+            return render_template('errors/500.html')
+
 
 @post.route('/update-post')
 def update_post():
@@ -70,12 +93,3 @@ def update_post():
         return redirect(url_for('auth.login'))
 
     return render_template('user/update-post.html')
-    
-    return "update post"
-
-@post.route('/view-post')
-def view_post():
-    if 'username' not in session:
-        return redirect(url_for('auth.login'))
-    
-    return "view post"

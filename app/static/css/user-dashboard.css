@@ -5,68 +5,121 @@ body{
 }
 main{
     width: min(700px, 95vw);
-    height: auto;
+    height: calc(100vh - 57px);
 
     align-self: center;
 
 }
-.post, .connection, .privacy, .account{
+.profile_detail{
+    position: relative;
     width: 100%;
-    background-color: white;
-    margin-top: 2em;
+    background-color: rgb(93, 174, 255);
+    padding: .3em 0em .3em .2em;
+    margin-top: .5em;
 }
 h1{
+    font-size: 2em;
+    font-weight: bold;
+}
+h1 > span{
+    font-size: 1em;
+    font-weight: 500;
+}
+p > span{
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.posts{
+    width: min(700px, 100%);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    margin:2em auto;
+    
+    align-items: center;
+    justify-items: center;
+    grid-row-gap: 1em;
+}
+
+.create-post{
+    width: 50px;
+    height: 50px;
+
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 100%;
+    background-color: lightblue;
+    font-size: 30px;
+
+    cursor: pointer;
+    
+}
+.post{
+    width: min(300px, 95%);
+    height: auto;
+    box-shadow: 0px 0px 3px lightgray;
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+}
+.title{
+    width: 100%;
     text-align: center;
-    padding: .5em 0;
+    font-weight: bold;
+    padding: .3em 0;
+    background-color: lightgray;
+}
+.empression{
+    border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
 }
-.action-container{
+.empression, .action{
+    padding: .3em 0;
     width: 100%;
-    padding: 1em 0;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-row-gap: 1em;
-    justify-items: center;
-    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
 }
-.action-card{
-    width: 180px;
-    height: 50px;
 
-    padding: .5em 0;
+.like, .dislike{
+    width: 100%;
     text-align: center;
     cursor: pointer;
-
-    background-color: whitesmoke;
-    box-shadow: 1px 2px 3px lightgray;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-weight: 500;
 }
-.action-card:hover{
-    background-color: rgb(80, 32, 251);
+.del, .update{
+    padding: .2em 1.2em;
     color: white;
-}
-.delete{
-    width: 180px;
-    height: 50px;
-
-    padding: .5em 0;
-    text-align: center;
     cursor: pointer;
-
-    color: white;
-    background-color: rgb(220, 0, 0);
-    box-shadow: 1px 2px 3px lightgray;
-    font-weight: 500;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
-.delete:hover{
-    background-color: rgb(190, 0, 0);
+.del{
+    background-color: rgb(223, 36, 36);
+    &:hover{
+        background-color: rgb(200, 20, 20);
+    }
+}
+.update{
+    background-color: rgb(74, 74, 248);
+    &:hover{
+        background-color: rgb(54, 54, 247);
+    }
+}
+
+.edit_button{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+
+    background-image: url("/app/static/icon/edit.png");
+    background-size: contain;
+    background-color: yellow;
+    
+    cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
